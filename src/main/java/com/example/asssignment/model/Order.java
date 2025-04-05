@@ -1,5 +1,8 @@
 package com.example.asssignment.model;
 
+
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,29 +20,38 @@ public class Order {
 	@Id
 	private String orderId;
 	private String userId;
-	private String stockId;
+	private String tickerSymbol;
 	private int quantity;
 	private double price;
-	
+	private String orderType;
+	private Date orderDate = new Date(System.currentTimeMillis());
+	private String status = "CREATED";
+
+
 	public Order() {
 		super();
 	}
 	
-	public Order(String userId, String stockId, int quantity, double price) {
+	public Order(String userId, String tickerSymbol, int quantity, double price, String orderType) {
 		super();
 		this.userId = userId;
-		this.stockId = stockId;
+		this.tickerSymbol = tickerSymbol;
 		this.quantity = quantity;
 		this.price = price;
+		this.orderType = orderType;
+		this.orderDate = new Date(System.currentTimeMillis());
 	}
 	
-	public Order(String orderId, String userId, String stockId, int quantity, double price) {
+	public Order(String orderId, String userId, String tickerSymbol, int quantity, double price, String orderType, Date orderDate, String status) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
-		this.stockId = stockId;
+		this.tickerSymbol = tickerSymbol;
 		this.quantity = quantity;
 		this.price = price;
+		this.orderType = orderType;
+		this.orderDate = orderDate;
+		this.status = status;
 	}
 
 	public String getOrderId() {
@@ -58,12 +70,12 @@ public class Order {
 		this.userId = userId;
 	}
 
-	public String getStockId() {
-		return stockId;
+	public String getTickerSymbol() {
+		return tickerSymbol;
 	}
 
-	public void setStockId(String stockId) {
-		this.stockId = stockId;
+	public void setTickerSymbol(String tickerSymbol) {
+		this.tickerSymbol = tickerSymbol;
 	}
 
 	public int getQuantity() {
@@ -81,6 +93,29 @@ public class Order {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
 	
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

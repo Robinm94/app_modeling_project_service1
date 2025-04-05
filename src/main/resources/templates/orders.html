@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -22,8 +23,6 @@
         }
         .alert {
             margin-bottom: 20px;
-        }
-        .table-responsive {
             overflow-x: auto;
         }
     </style>
@@ -51,55 +50,66 @@
             <span th:text="${success}"></span>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        
+
         <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
             <span th:text="${error}"></span>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        
+
         <!-- Order Creation Form -->
         <div class="form-container">
             <h3>Create New Order</h3>
             <form th:action="@{/order/create}" th:object="${newOrder}" method="post">
                 <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label for="stockId" class="form-label">Stock ID</label>
-                        <input type="text" class="form-control" id="stockId" th:field="*{stockId}" required>
+                    <div class="col-md-3">
+                        <label for="tickerSymbol" class="form-label">Ticker Symbol</label>
+                        <input type="text" class="form-control" id="tickerSymbol" th:field="*{tickerSymbol}" required>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="quantity" class="form-label">Quantity</label>
                         <input type="number" class="form-control" id="quantity" th:field="*{quantity}" min="1" required>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="price" class="form-label">Price</label>
                         <input type="number" class="form-control" id="price" th:field="*{price}" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="orderType" class="form-label">Order Type</label>
+                        <select class="form-control" id="orderType" th:field="*{orderType}" required>
+                            <option value="BUY">Buy</option>
+                            <option value="SELL">Sell</option>
+                        </select>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Create Order</button>
             </form>
         </div>
-        
+
         <!-- Orders Table -->
         <h3>Your Orders</h3>
         <div class="table-responsive">
             <table class="table table-striped table-hover orders-table">
                 <thead class="table-dark">
                     <tr>
-                        <th>Stock ID</th>
+                        <th>Ticker Symbol</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total Value</th>
+                        <th>Order Type</th>
+                        <th>Order Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:if="${orders.empty}">
-                        <td colspan="5" class="text-center">No orders available</td>
+                        <td colspan="6" class="text-center">No orders available</td>
                     </tr>
                     <tr th:each="order : ${orders}">
-                        <td th:text="${order.stockId}"></td>
+                        <td th:text="${order.tickerSymbol}"></td>
                         <td th:text="${order.quantity}"></td>
                         <td th:text="'$' + ${#numbers.formatDecimal(order.price, 1, 2)}"></td>
                         <td th:text="'$' + ${#numbers.formatDecimal(order.price * order.quantity, 1, 2)}"></td>
+                        <td th:text="${order.orderType}"></td>
+                        <td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd')}"></td>
                     </tr>
                 </tbody>
             </table>

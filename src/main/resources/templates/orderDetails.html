@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Order Details</h2>
+        <div class="card mb-3">
+            <div class="card-header">Transaction Details</div>
+            <div class="card-body">
+                <p><strong>Order ID:</strong> <span th:text="${transaction.orderId}"></span></p>
+                <p><strong>Transaction Type:</strong> <span th:text="${transaction.transactionType}"></span></p>
+                <p><strong>Ticker Symbol:</strong> <span th:text="${transaction.tickerSymbol}"></span></p>
+                <p><strong>Transaction Price:</strong> <span th:text="${transaction.transactionPrice}"></span></p>
+                <p><strong>Order Date Time:</strong> <span th:text="${transaction.orderDateTime}"></span></p>
+                <p><strong>Order Amount:</strong> <span th:text="${transaction.orderAmt}"></span></p>
+                <p><strong>Balance Amount:</strong> <span th:text="${transaction.balanceAmt}"></span></p>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">Fee Details</div>
+            <div class="card-body">
+                <p><strong>Fee ID:</strong> <span th:text="${fee.feeId}"></span></p>
+                <p><strong>Fee Type:</strong> <span th:text="${fee.feeType}"></span></p>
+                <p><strong>Fee Amount:</strong> <span th:text="${fee.feeAmount}"></span></p>
+                <p><strong>Fee Date:</strong> <span th:text="${fee.feeDate}"></span></p>
+                <p><strong>Fee Time:</strong> <span th:text="${fee.feeTime}"></span></p>
+                <p><strong>Sales Tax:</strong> <span th:text="${fee.salesTax}"></span></p>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">Market Order Details</div>
+            <div class="card-body">
+                <p><strong>Market Order ID:</strong> <span th:text="${marketOrder.marketOrderId}"></span></p>
+                <p><strong>Order ID:</strong> <span th:text="${marketOrder.orderId}"></span></p>
+                <p><strong>Transaction ID:</strong> <span th:text="${marketOrder.transactionId}"></span></p>
+                <p><strong>Fee ID:</strong> <span th:text="${marketOrder.feeId}"></span></p>
+                <p><strong>Bid:</strong> <span th:text="${marketOrder.bid}"></span></p>
+                <p><strong>Ask:</strong> <span th:text="${marketOrder.ask}"></span></p>
+                <p><strong>Type of Exchange:</strong> <span th:text="${marketOrder.typeOfExchange}"></span></p>
+                <p><strong>Status:</strong> <span th:text="${marketOrder.status}"></span></p>
+                <p><strong>Order Date Time:</strong> <span th:text="${marketOrder.orderDateTime}"></span></p>
+            </div>
+        </div>
+        <a href="/order" class="btn btn-primary">Back to Order Dashboard</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

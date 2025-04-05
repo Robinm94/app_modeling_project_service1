@@ -22,6 +22,7 @@ public class User {
 	@Indexed(unique = true)
 	private String email;
 	private String password;
+	private Double balance = 10000.0;
 	
 	public User() {
 		super();
@@ -32,13 +33,15 @@ public class User {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
+		this.balance = 10000.0;
 	}
-	public User(String userId, String userName, String email, String password) {
+	public User(String userId, String userName, String email, String password, Double balance) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
+		this.balance = balance;
 	}
 	public String getUserId() {
 		return userId;
@@ -64,6 +67,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
 	
 }

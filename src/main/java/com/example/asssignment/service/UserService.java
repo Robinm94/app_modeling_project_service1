@@ -20,6 +20,10 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
+	public Mono<User> updateUser(User user) {
+		return userRepository.save(user);
+	}
+	
 	public Mono<User> getUserByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
